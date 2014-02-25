@@ -19,10 +19,10 @@ public class Gamer {
 
     public void setFigure(char figure) {
 
-        if (figure == 'x' || figure == '0')
-            this.figure = figure;
-        else
-            this.figure = 'x';
+        this.figure = 'x';
+
+        if (figure == '0' || figure == 'o')
+            this.figure = 'o';
     }
 
     public char getFigure() {
