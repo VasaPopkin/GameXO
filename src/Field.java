@@ -11,7 +11,7 @@ public class Field {
 
     private static final char DEFAULT_CELL_VAL = ' ';
 
-    private int fieldSize;
+    private final int FIELD_SIZE;
 
     private final char[][] field;
 
@@ -21,28 +21,28 @@ public class Field {
 
     public Field(int size){
         if (size > MAX_FIELD_SIZE || size < MIN_FIELD_SIZE)
-            fieldSize = DEFAULT_FIELD_SIZE;
+            FIELD_SIZE = DEFAULT_FIELD_SIZE;
         else
-        fieldSize = size;
-        field = new char[fieldSize][fieldSize];
+        FIELD_SIZE = size;
+        field = new char[FIELD_SIZE][FIELD_SIZE];
     }
 
     public void fillField(){
-        for (int i=0; i < fieldSize; i++)
-            for (int j=0; j < fieldSize; j++)
+        for (int i=0; i < FIELD_SIZE; i++)
+            for (int j=0; j < FIELD_SIZE; j++)
                 field[i][j] = DEFAULT_CELL_VAL;
 
     }
 
     public void printField(){
 
-        for (int i = 0; i < fieldSize; i++)
+        for (int i = 0; i < FIELD_SIZE; i++)
             System.out.print("    " + (i + 1));
         System.out.println();
 
-        for (int i = 0; i < fieldSize; i++){
+        for (int i = 0; i < FIELD_SIZE; i++){
             System.out.print(i + 1 + " |");
-            for (int j = 0; j < fieldSize; j++){
+            for (int j = 0; j < FIELD_SIZE; j++){
                 System.out.print(" "+field[i][j] + " | ");
             }
             System.out.println();
@@ -67,8 +67,8 @@ public class Field {
     public boolean findHorizontalSequence(){
         boolean a = false;
 
-        for (int i=0; i<fieldSize; i++)
-            for (int j=0; j <= fieldSize - LENGTH_OF_SEQUENCE; j++)
+        for (int i=0; i< FIELD_SIZE; i++)
+            for (int j=0; j <= FIELD_SIZE - LENGTH_OF_SEQUENCE; j++)
 
                 if ((field[i][j] == field[i][j+1])&&(field[i][j] == field[i][j+2])&&(field[i][j]!=' '))
                     a=true;
@@ -78,8 +78,8 @@ public class Field {
     public boolean findVerticalSequence(){
         boolean a=false;
 
-        for (int j=0; j < fieldSize; j++)
-            for (int i=0; i <= fieldSize - LENGTH_OF_SEQUENCE; i++)
+        for (int j=0; j < FIELD_SIZE; j++)
+            for (int i=0; i <= FIELD_SIZE - LENGTH_OF_SEQUENCE; i++)
 
                 if ((field[i][j] == field[i+1][j])&&(field[i][j] == field[i+2][j])&&(field[i][j]!=' '))
                     a=true;
@@ -89,8 +89,8 @@ public class Field {
     public boolean findDiagonalSequence1(){
         boolean a=false;
 
-        for (int i=0; i <= fieldSize - LENGTH_OF_SEQUENCE; i++)
-            for (int j=0; j <= fieldSize - LENGTH_OF_SEQUENCE; j++)
+        for (int i=0; i <= FIELD_SIZE - LENGTH_OF_SEQUENCE; i++)
+            for (int j=0; j <= FIELD_SIZE - LENGTH_OF_SEQUENCE; j++)
 
                 if ((field[i][j] == field[i+1][j+1])&&(field[i][j] == field[i+2][j+2])&&(field[i][j]!=' '))
                     a=true;
@@ -100,8 +100,8 @@ public class Field {
     public boolean findDiagonalSequence2(){
         boolean a=false;
 
-        for (int i=0; i <= fieldSize - LENGTH_OF_SEQUENCE; i++)
-            for (int j=2; j < fieldSize; j++)
+        for (int i=0; i <= FIELD_SIZE - LENGTH_OF_SEQUENCE; i++)
+            for (int j=2; j < FIELD_SIZE; j++)
 
                 if ((field[i][j] == field[i+1][j-1])&&(field[i][j] == field[i+2][j-2])&&(field[i][j]!=' '))
                     a=true;
@@ -121,6 +121,12 @@ public class Field {
     public char getCell(int i, int j){
 
         return field[i][j];
+
+    }
+
+    public int getSize() {
+
+        return FIELD_SIZE;
 
     }
 

@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     public static void main(String[] args){
 
-        int i,size, maxCountOfSteps, line, row;
+        int i,size, maxCountOfSteps, line, row, menuLine;
         boolean gmr = true;
 
         Scanner input=new Scanner(System.in);
@@ -12,28 +12,35 @@ public class Main {
         System.out.println("input size of game field:");
         size = input.nextInt();
         gameField = new Field(size);
-        maxCountOfSteps = size*size;
+        maxCountOfSteps = size * size;
         gameField.fillField();
         gameField.printField();
 
         Gamer gamerx;
+
         Gamer gamer1 = new Gamer();
         Gamer gamer2 = new Gamer();
 
+        menuLine = menu();
+
         System.out.println();
         System.out.println("Gamer 1: ");
-        System.out.print("input name: ");
-        gamer1.setName(input.next());
+        inputGamerName(gamer1);
+
+        if (menuLine == 0){
+
+            System.out.println();
+            System.out.println("Gamer 2: ");
+            inputGamerName(gamer2);
+        }
+        else {
+
+            gamer2 = new Comp();
+
+        }
 
         gamer1.setFigure('x');
         gamer2.setFigure('0');
-
-        System.out.println(gamer1.getFigure());
-        System.out.println();
-        System.out.println("Gamer 2: ");
-        System.out.print("input name:");
-
-        gamer2.setName(input.next());
 
         for (i = 0; i < maxCountOfSteps; i++){
             for (int j = 0; j<30; j++)
@@ -70,5 +77,37 @@ public class Main {
             gameField.printField();
             System.out.println("Draw");
         }
+    }
+
+
+
+    public static void inputGamerName(Gamer gamer){
+
+        Scanner input=new Scanner(System.in);
+        System.out.print("input name: ");
+        gamer.setName(input.next());
+
+    }
+
+    public static int menu(){
+
+        int i;
+        final int MIN_MENU_VAL = 0;
+        final int MAX_MENU_VAL = 1;
+        Scanner input=new Scanner(System.in);
+        while (true){
+
+        System.out.println();
+        System.out.println("0: PvP");
+        System.out.println("1: PvC");
+
+        i = input.nextInt();
+
+        if ((i >= MIN_MENU_VAL) && (i <= MAX_MENU_VAL) )
+            break;
+
+        }
+
+        return i;
     }
 }
