@@ -6,6 +6,7 @@ public class Main {
 
         int i,size, maxCountOfSteps, line, row, menuLine;
         boolean gmr = true;
+        int[] cellCoords = new int[2];
 
         Scanner input=new Scanner(System.in);
         Field gameField;
@@ -42,6 +43,7 @@ public class Main {
         gamer1.setFigure('x');
         gamer2.setFigure('0');
 
+
         for (i = 0; i < maxCountOfSteps; i++){
             for (int j = 0; j<30; j++)
             System.out.println();
@@ -52,20 +54,17 @@ public class Main {
                 gamerx = gamer2;
 
             gameField.printField();
-            System.out.println("Gamer " + gamerx.getName());
-            System.out.println("input i:");
-            line = input.nextInt();
-            System.out.println("input j:");
-            row = input.nextInt();
 
+             cellCoords = gamerx.setCell(gameField);
 
-            if (gameField.setCell(--line,--row,gamerx.getFigure()))
+            if (gameField.setCell(--cellCoords[0], --cellCoords[1], gamerx.getFigure()))
             {
             gmr = !gmr;
             }
             if (gameField.checkForAWin()){
 
-                System.out.println(gamerx.getName() + "wins!");
+                gameField.printField();
+                System.out.println(gamerx.getName() + " wins!");
                 break;
             }
 

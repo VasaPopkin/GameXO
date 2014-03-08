@@ -64,6 +64,11 @@ public class Field {
         }
     }
 
+    public void setEmptyCell(int i, int j){
+
+        field[i][j] = DEFAULT_CELL_VAL;
+    }
+
     public boolean findHorizontalSequence(){
         boolean a = false;
 
@@ -107,6 +112,7 @@ public class Field {
                     a=true;
         return a;
     }
+
     public boolean checkForAWin(){
 
         boolean a = false;
@@ -129,5 +135,13 @@ public class Field {
         return FIELD_SIZE;
 
     }
+
+    public char[][] getField(){
+
+        return field;
+
+    }
+
+
 
 }
