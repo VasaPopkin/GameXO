@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     public static void main(String[] args){
 
-        int i,size, maxCountOfSteps, line, row, menuLine;
+        int i,size, maxCountOfSteps, menuLine;
         boolean gmr = true;
         int[] cellCoords = new int[2];
 
